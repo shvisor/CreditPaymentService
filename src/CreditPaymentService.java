@@ -1,5 +1,5 @@
 public class CreditPaymentService {
-    public double calculate(int loan, int period, double rate) { /* если бы period был в годах, то для расчета нужно его умножить на 12 */
+    public double calculate(int loan, int period, double rate) {
         double percent = rate / 100; /* перевод процентов в числовой формат */
         double monthlyRate = percent / 12; /* расчет месячной ставки */
         double ratio = (monthlyRate * Math.pow(1 + monthlyRate, period)) / (Math.pow(1 + monthlyRate, period) - 1); /* расчет коэффициента */
