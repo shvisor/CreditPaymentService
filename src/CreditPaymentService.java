@@ -1,9 +1,14 @@
 public class CreditPaymentService {
+    /**
+     * Расчет ежемесячного платежа по кредиту
+     * @param loan сумма кредита
+     * @param period срок кредита в месяцах
+     * @param rate годовая процентная ставка по кредиту
+     * @return возврат ежемесячного платежа с приведением к целочисленному типу
+     */
     public double calculate(int loan, int period, double rate) {
-        double percent = rate / 100; /* перевод процентов в числовой формат */
-        double monthlyRate = percent / 12; /* расчет месячной ставки */
-        double ratio = (monthlyRate * Math.pow(1 + monthlyRate, period)) / (Math.pow(1 + monthlyRate, period) - 1); /* расчет коэффициента */
-        double payment = loan * ratio; /* расчет ежемесячного платежа */
-        return Math.round(payment * 100d) / 100d; /* округление до сотых долей (до копеек) */
+        double percent = rate / 100 / 12; /* расчет месячной ставки */
+        double payment = loan * ((percent * Math.pow((1 + percent), period * 12)) / (Math.pow((1 + percent), period * 12) - 1)); /* расчет ежемесячного платежа */
+        return (int) payment;
     }
 }
